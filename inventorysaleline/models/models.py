@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
+
 from odoo import models, fields, api
 
-
 class inventorysaleline(models.Model):
-    _name = 'inventorysaleline.inventorysaleline'
-    _description = 'inventorysaleline.inventorysaleline'
+    _name = 'sale.order'
+    _inherit = "sale.order"
 
-    name = fields.Char('test')
+
+    inventorysalewarehouse_id = fields.One2many('stock.warehouse',required=True, default=None)   
     
 #     value = fields.Integer()
 #     value2 = fields.Float(compute="_value_pc", store=True)
