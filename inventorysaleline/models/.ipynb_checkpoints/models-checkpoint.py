@@ -3,13 +3,15 @@
 
 from odoo import models, fields, api
 
-class inventorysaleline(models.Model):
-    _name = 'sale.order'
+
+
+class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-
-    inventorysalewarehouse_id = fields.One2many('stock.warehouse',required=True, default=None)   
-    
+    warehouse_id = fields.Many2one(
+        'stock.warehouse', string='Warehouse',
+        required=False, readonly=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)]},
+        default=None, check_company=True)
 #     value = fields.Integer()
 #     value2 = fields.Float(compute="_value_pc", store=True)
 #     description = fields.Text()
