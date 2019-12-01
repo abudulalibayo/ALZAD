@@ -4,11 +4,10 @@
 from odoo import models, fields, api
 
 
-
 class SaleOrder(models.Model):
     _inherit = "sale.order"
     
-    warehouse2_id = fields.Many2one(
+    warehouse_id = fields.Many2one(
         'stock.warehouse', string='Warehouse',
         required=False, readonly=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)]},
         default=None, check_company=True)
